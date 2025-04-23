@@ -3,47 +3,43 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import  SmoothScroll from '../components/SmoothScroll';
+import Typewriter from "astro-typewriter";
+
 ---
 
 <!doctype html>
-<html lang="en">
+<html data-theme="dark" lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
+		<div class="z-200 text-gray-200 main-content relative bg-primary" id="start">
+			<div class="bg"></div>
+			<Header />
+			<main class="relative">
+				<section id="home" class="max-w-screen-xl px-4 md:py-10 mx-auto h-[100dvh] flex flex-col justify-center">
+					<p class="special-font text-4xl sm:text-5xl font-bold mb-3 fade-up-0"><span class="blue-gradient">Hey :)</span><span class="emoji">👋</span></p>
+					<p class="special-font text-4xl sm:text-5xl font-bold mb-6 fade-up-2">My name is Emiel</p>
+					<div class="text-3xl blue-gradient fade-up-4 mb-4">
+					<Typewriter messages={["< Passionate developer />", "< Full Stack />", "< Hobbyist />",]} />
+					</div>
+					<p class="text fade-up-4 sm:max-w-[40rem] text-gray-500 mb-52">A recent Software Engineering graduate from Howest Brugge with a broad
+						interest in various IT fields. I have primarily developed my skills in creating web
+						applications and am eager to expand my expertise into new areas as needed.
+						</p>
+				</section>
+				<section id="about" class="max-w-screen-xl px-4 md:py-10 mx-auto">
+					<h2 class="text-2xl h-dvh">About</h2>
+				</section>
+				<section id="blog" class="max-w-screen-xl px-4 md:py-10 mx-auto">
+					<h2 class="text-2xl h-dvh">Blog</h2>
+				
+				</section>
+			</main>
+			<!-- <Footer /> -->
+		</div>
+	
+		<SmoothScroll client:only="react" />
 	</body>
 </html>
