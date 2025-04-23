@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://emiel04.5139512.xyz/sitemap-index.xml
