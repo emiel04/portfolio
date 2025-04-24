@@ -1,8 +1,8 @@
 ---
-const { children, downloadUrl = "#" } = Astro.props;
+const { children, downloadUrl = "#", class: className } = Astro.props;
 ---
 
-<button class="button" id="cv-download-button" data-url={downloadUrl}>
+<button class="button" id="cv-download-button" data-url={downloadUrl} class:list={["", className]}>
     <span class="button_lg">
         <span class="button_sl"></span>
         <span class="button_text">
