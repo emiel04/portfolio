@@ -1,0 +1,41 @@
+---
+import '../styles/hamburger.css'
+const { class: className } = Astro.props;
+---
+
+<div class:list={["hamburger", className]} id="hamburger">
+    <span class="line"></span>
+    <span class="line"></span>
+    <span class="line"></span>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const $hamburger = document.querySelector('.hamburger') as HTMLElement | null;
+        const $sidebarMenu = document.querySelector('#menuSidebar') as HTMLElement | null;
+
+        if (!$hamburger || !$sidebarMenu) {
+            return;
+        }
+
+        $hamburger.addEventListener("click", function(event: MouseEvent) {
+            event.stopPropagation();
+            $hamburger.classList.toggle("is-active");
+            $sidebarMenu.classList.toggle("open");
+        });
+
+        document.addEventListener("click", function(event: MouseEvent) {
+            const target = event.target as HTMLElement | null;
+            if ($sidebarMenu.classList.contains('open') && target && !$sidebarMenu.contains(target) && !target.matches('.hamburger')) {
+                $hamburger.classList.remove("is-active");
+                $sidebarMenu.classList.remove("open");
+            }
+        });
+
+        $sidebarMenu.addEventListener("click", function(event: MouseEvent) {
+            event.stopPropagation();
+        });
+    });
+
+
+</script>

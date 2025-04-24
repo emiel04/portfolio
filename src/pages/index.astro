@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import  SmoothScroll from '../components/SmoothScroll';
 import Typewriter from "astro-typewriter";
+import DownloadButton from "../components/DownloadButton.astro";
 
 ---
 
@@ -16,29 +17,42 @@ import Typewriter from "astro-typewriter";
 		<div class="z-200 text-gray-200 main-content relative bg-primary" id="start">
 			<div class="bg"></div>
 			<Header />
+
 			<main class="relative">
-				<section id="home" class="max-w-screen-xl px-4 md:py-10 mx-auto h-[100dvh] flex flex-col justify-center">
+				<section id="home" class="max-w-screen-xl px-4 md:py-10 mx-auto h-[96vh] flex flex-col justify-center pt-6 xs:pt-0">
 					<p class="special-font text-4xl sm:text-5xl font-bold mb-3 fade-up-0"><span class="blue-gradient">Hey :)</span><span class="emoji">👋</span></p>
 					<p class="special-font text-4xl sm:text-5xl font-bold mb-6 fade-up-2">My name is Emiel</p>
 					<div class="text-3xl blue-gradient fade-up-4 mb-4">
 					<Typewriter messages={["< Passionate developer />", "< Full Stack />", "< Hobbyist />",]} />
 					</div>
-					<p class="text fade-up-4 sm:max-w-[40rem] text-gray-500 mb-52">A recent Software Engineering graduate from Howest Brugge with a broad
-						interest in various IT fields. I have primarily developed my skills in creating web
-						applications and am eager to expand my expertise into new areas as needed.
+					<div class="mb-52">
+						<p class="text fade-up-4 sm:max-w-[55rem] text-gray-500  text-xl mb-6">A recent Software Engineering graduate from Howest Brugge with a broad
+							interest in various IT fields. I have primarily developed my skills in creating web
+							applications and am eager to expand my expertise into new areas as needed.
 						</p>
+						<DownloadButton downloadUrl="/files/CV-Emiel-Delaey.pdf">
+							Download CV
+						</DownloadButton>
+					</div>
+
 				</section>
-				<section id="about" class="max-w-screen-xl px-4 md:py-10 mx-auto">
-					<h2 class="text-2xl h-dvh">About</h2>
+				<section id="about" class="max-w-screen-xl px-4 md:py-10 mx-auto pt-6 xs:pt-0">
+					<h2 class="text-2xl h-20">About</h2>
 				</section>
-				<section id="blog" class="max-w-screen-xl px-4 md:py-10 mx-auto">
-					<h2 class="text-2xl h-dvh">Blog</h2>
-				
+				<section id="blog" class="max-w-screen-xl px-4 md:py-10 mx-auto pt-6 xs:pt-0">
+					<h2 class="text-2xl h-20">Blog</h2>
 				</section>
 			</main>
 			<!-- <Footer /> -->
+			<div id="menuSidebar" class="sidebar-menu fixed sm:hidden">
+				<div class="internal-links flex flex-col gap-10 p-6">
+					<a href="#start" class="uppercase font-medium text-white">Home</a>
+					<a href="#about" class="uppercase font-medium text-white">About</a>
+					<a href="#blog" class="uppercase font-medium text-white">Blog</a>
+				</div>
+			</div>
 		</div>
-	
+
 		<SmoothScroll client:only="react" />
 	</body>
 </html>
