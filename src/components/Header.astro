@@ -1,29 +1,38 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../consts";
 import Hamburger from "./Hamburger.astro";
 ---
 
-<header class="border-b border-gray-600 border-opacity-25 nav backdrop-blur-lg sticky top-0 z-50">
-  <nav class="max-w-screen-xl px-2 py-4 mx-auto flex flex-row justify-between items-center gap-10">
-    <h1 class="hidden sm:block"><a href="/">{SITE_TITLE}</a></h1>
-    <h1 class="block sm:hidden"><a href="/">{SITE_TITLE.split('-')[0]}</a></h1>
+<header class="border-opacity-25 nav sticky top-0 z-50 border-b border-gray-600 backdrop-blur-lg">
+	<nav class="mx-auto flex max-w-screen-xl flex-row items-center justify-between gap-10 px-2 py-4">
+		<h1 class="hidden sm:block"><a href="/">{SITE_TITLE}</a></h1>
+		<h1 class="block sm:hidden"><a href="/">{SITE_TITLE.split("-")[0]}</a></h1>
 
-    <Hamburger class="sm:hidden pr-3 z-[200] relative"></Hamburger>
+		<Hamburger class="relative z-[200] pr-3 sm:hidden" />
 
-    <div class="internal-links gap-12 hidden sm:flex">
-      <div class="relative group">
-        <HeaderLink href="#start" class="uppercase font-medium">Home</HeaderLink>
-        <div class="h-1 w-full rounded-lg absolute -bottom-[10px] transition-all  bg-white group-hover:bg-blue-600"></div>
-      </div>
-      <div class="relative group">
-        <HeaderLink href="#about" class="uppercase font-medium">About</HeaderLink>
-        <div class="h-1 w-full rounded-lg absolute -bottom-[10px] transition-all  bg-white group-hover:bg-blue-600"></div>
-      </div>
-      <div class="relative group">
-        <HeaderLink href="#blog" class="uppercase font-medium">Blog</HeaderLink>
-        <div class="h-1 w-full rounded-lg absolute -bottom-[10px] transition-all  bg-white group-hover:bg-blue-600"></div>
-      </div>
-    </div>
-  </nav>
+		<div class="internal-links hidden gap-12 sm:flex">
+			<div class="group relative">
+				<HeaderLink href="#start" class="font-medium uppercase">Home</HeaderLink>
+				<div
+					class="absolute -bottom-[10px] h-1 w-full rounded-lg bg-white transition-all group-hover:bg-blue-600"
+				>
+				</div>
+			</div>
+			<div class="group relative">
+				<HeaderLink href="#about" class="font-medium uppercase">About</HeaderLink>
+				<div
+					class="absolute -bottom-[10px] h-1 w-full rounded-lg bg-white transition-all group-hover:bg-blue-600"
+				>
+				</div>
+			</div>
+			<div class="group relative">
+				<HeaderLink href="#blog" class="font-medium uppercase">Blog</HeaderLink>
+				<div
+					class="absolute -bottom-[10px] h-1 w-full rounded-lg bg-white transition-all group-hover:bg-blue-600"
+				>
+				</div>
+			</div>
+		</div>
+	</nav>
 </header>

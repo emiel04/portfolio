@@ -1,76 +1,84 @@
 ---
-import {gsap} from 'gsap';
-
 const experiences = [
-    {
-        title: "Software Engineer Intern",
-        company: "Citymesh",
-        period: "Feb 2025 - May 2025",
-        description: "Built a 5G use-case report generator with data visualizations, translated business needs into technical solutions, led agile sprints, and built a multi-service tool using Node.js, Kafka, and Vue.js."
-    },
-    {
-        title: "Technical Support",
-        company: "Citymesh",
-        period: "July 2024",
-        description: "Provided on-site and remote technical assistance, and configured WiFi hardware for customers."
-    },
-    {
-        title: "Customer Service",
-        company: "La Belgique Gourmande",
-        period: "August 2023",
-        description: "Sold local specialty goods, ensured quality customer service, and worked in a performance-based environment."
-    },
-    {
-        title: "Website Developer (WordPress)",
-        company: "Knoware",
-        period: "July 2022",
-        description: "Created a modern, user-friendly website and used Jira in a business context."
-    },
-    {
-        title: "Software Engineer Intern",
-        company: "City Oostkamp",
-        period: "April 2022",
-        description: "Created a web application with ASP.NET to streamline and automate data collection for educational institutions."
-    },
+	{
+		title: "Software Engineer Intern",
+		company: "Citymesh",
+		period: "Feb 2025 - May 2025",
+		description:
+			"Built a 5G use-case report generator with data visualizations, translated business needs into technical solutions, led agile sprints, and built a multi-service tool using Node.js, Kafka, and Vue.js.",
+	},
+	{
+		title: "Technical Support",
+		company: "Citymesh",
+		period: "July 2024",
+		description:
+			"Provided on-site and remote technical assistance, and configured WiFi hardware for customers.",
+	},
+	{
+		title: "Customer Service",
+		company: "La Belgique Gourmande",
+		period: "August 2023",
+		description:
+			"Sold local specialty goods, ensured quality customer service, and worked in a performance-based environment.",
+	},
+	{
+		title: "Website Developer (WordPress)",
+		company: "Knoware",
+		period: "July 2022",
+		description: "Created a modern, user-friendly website and used Jira in a business context.",
+	},
+	{
+		title: "Software Engineer Intern",
+		company: "City Oostkamp",
+		period: "April 2022",
+		description:
+			"Created a web application with ASP.NET to streamline and automate data collection for educational institutions.",
+	},
 ];
 ---
 
-       <div class="relative border-l-2 border-gray-700 ml-4 space-y-12">
-        {experiences.map((exp) => (
-                <div class="relative pl-8 group timeline-item">
-                    <div class="absolute -left-[.84rem] top-0 bg-primary border-2 border-blue-500 rounded-full w-6 h-6 group-hover:bg-blue-500 transition duration-400 ease-out"></div>
-                    <div class="flex flex-col gap-1">
-                        <h3 class="text-xl font-semibold">{exp.title}</h3>
-                        <h4 class="text-blue-400">{exp.company}</h4>
-                        <span class="text-gray-400 text-sm">{exp.period}</span>
-                        <p class="text-gray-500 mt-2">{exp.description}</p>
-                    </div>
-                </div>
-        ))}
-    </div>
+<div class="relative ml-4 space-y-12 border-l-2 border-gray-700">
+	{
+		experiences.map((exp) => (
+			<div class="group timeline-item relative pl-8">
+				<div class="bg-primary absolute top-0 -left-[.84rem] h-6 w-6 rounded-full border-2 border-blue-500 transition duration-400 ease-out group-hover:bg-blue-500" />
+				<div class="flex flex-col gap-1">
+					<h3 class="text-xl font-semibold">{exp.title}</h3>
+					<h4 class="text-blue-400">{exp.company}</h4>
+					<span class="text-sm text-gray-400">{exp.period}</span>
+					<p class="mt-2 text-gray-500">{exp.description}</p>
+				</div>
+			</div>
+		))
+	}
+</div>
 <script>
-    import {gsap} from 'gsap';
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-    gsap.registerPlugin(ScrollTrigger);
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
 
-    const $items = document.querySelectorAll('.timeline-item');
+	const $items = document.querySelectorAll(".timeline-item");
 
-    gsap.fromTo($items, {
-        opacity: 0,
-        y: 50,
-        scale: 0.9
-    }, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        stagger: 0.2,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#experience",
-            start: "top center",
-            end: "bottom center",
-            toggleActions: "play none none",
-        }
-    });
+	gsap.fromTo(
+		$items,
+		{
+			opacity: 0,
+			y: 50,
+			scale: 0.9,
+		},
+		{
+			opacity: 1,
+			y: 0,
+			scale: 1,
+			stagger: 0.2,
+			duration: 0.8,
+			ease: "power2.out",
+			scrollTrigger: {
+				trigger: "#experience",
+				start: "top center",
+				end: "bottom center",
+				toggleActions: "play none none",
+			},
+		},
+	);
 </script>
