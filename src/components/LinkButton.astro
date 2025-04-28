@@ -1,5 +1,5 @@
 ---
-const { children, linkUrl = "#", class: className, external = false } = Astro.props;
+const { children, linkUrl = "#", class: className, external = false, name } = Astro.props;
 ---
 
 <a
@@ -8,6 +8,7 @@ const { children, linkUrl = "#", class: className, external = false } = Astro.pr
         class:list={["", className]}
         target={external ? "_blank" : undefined}
         rel={external ? "noopener noreferrer" : undefined}
+        aria-label={name}
 >
     <span class="button_lg">
         <span class="button_sl"></span>
