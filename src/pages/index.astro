@@ -8,6 +8,8 @@ import DownloadButton from "../components/DownloadButton.astro";
 import '../styles/scroll-indicator.css'
 import LinkButton from "../components/LinkButton.astro";
 import GlowCard from "../components/GlowCard.astro";
+import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+
 ---
 
 <!doctype html>
@@ -110,6 +112,15 @@ import GlowCard from "../components/GlowCard.astro";
                 <p>Hover over me to see the soft glow follow your mouse!</p>
             </GlowCard>
 
+        </section>
+        <section id="experience" class="max-w-screen-xl px-4 md:py-10 mx-auto pt-6 xs:pt-0 ">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-5xl font-bold special-font">
+                    <span class="blue-gradient">My Developer </span> Journey
+                </h2>
+                <p class="text-gray-400 mt-2">A glimpse into my professional journey.</p>
+            </div>
+            <ExperienceTimeline />
         </section>
     </main>
     <!-- <Footer /> -->
