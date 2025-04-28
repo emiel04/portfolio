@@ -10,8 +10,16 @@ export default function SmoothScroll() {
 
     if (prefersReducedMotion) return;
 
+    gsap.from(".scroll-indicator-init", {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      delay: 0.2,
+      ease: "power2.out",
+    });
+
     // Smooth scroll behavior for internal links
-    const headerLinks = document.querySelectorAll(".internal-links a");
+    const headerLinks = document.querySelectorAll("a.smooth-link");
 
     headerLinks.forEach((link) => {
       link.addEventListener("click", (e) => {

@@ -1,58 +1,76 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import  SmoothScroll from '../components/SmoothScroll';
+import {SITE_TITLE, SITE_DESCRIPTION} from '../consts';
+import SmoothScroll from '../components/SmoothScroll';
 import Typewriter from "astro-typewriter";
 import DownloadButton from "../components/DownloadButton.astro";
-
+import '../styles/scroll-indicator.css'
 ---
 
 <!doctype html>
 <html data-theme="dark" lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<div class="z-200 text-gray-200 main-content relative bg-primary" id="start">
-			<div class="bg"></div>
-			<Header />
+<head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION}/>
+</head>
+<body>
+<div class="z-200 text-gray-200 main-content relative bg-primary" id="start">
+    <div class="bg"></div>
+    <Header/>
 
-			<main class="relative">
-				<section id="home" class="max-w-screen-xl px-4 md:py-10 mx-auto h-[96vh] flex flex-col justify-center pt-6 xs:pt-0">
-					<p class="special-font text-4xl sm:text-5xl font-bold mb-3 fade-up-0"><span class="blue-gradient">Hey :)</span><span class="emoji">👋</span></p>
-					<p class="special-font text-4xl sm:text-5xl font-bold mb-6 fade-up-2">My name is Emiel</p>
-					<div class="text-3xl blue-gradient fade-up-4 mb-4">
-					<Typewriter messages={["< Passionate developer />", "< Full Stack />", "< Hobbyist />",]} />
-					</div>
-					<div class="mb-52">
-						<p class="text fade-up-4 sm:max-w-[55rem] text-gray-500  text-xl mb-6">A recent Software Engineering graduate from Howest Brugge with a broad
-							interest in various IT fields. I have primarily developed my skills in creating web
-							applications and am eager to expand my expertise into new areas as needed.
-						</p>
-						<DownloadButton downloadUrl="/files/CV-Emiel-Delaey.pdf" class="fade-up-6">
-							Download CV
-						</DownloadButton>
-					</div>
+    <main class="relative">
+        <section id="home"
+                 class="max-w-screen-xl px-4 md:py-10 mx-auto flex flex-col justify-center pt-6 xs:pt-0 lg:min-h-[500px]">
+            <div class="mb-20 md:mb-36">
+				<div class="mb-52 mt-20">
 
-				</section>
-				<section id="about" class="max-w-screen-xl px-4 md:py-10 mx-auto pt-6 xs:pt-0">
-					<h2 class="text-2xl h-20">About</h2>
-				</section>
-				<section id="blog" class="max-w-screen-xl px-4 md:py-10 mx-auto pt-6 xs:pt-0">
-					<h2 class="text-2xl h-20">Blog</h2>
-				</section>
-			</main>
-			<!-- <Footer /> -->
-			<div id="menuSidebar" class="sidebar-menu fixed sm:hidden">
-				<div class="internal-links flex flex-col gap-10 p-6">
-					<a href="#start" class="uppercase font-medium text-white">Home</a>
-					<a href="#about" class="uppercase font-medium text-white">About</a>
-					<a href="#blog" class="uppercase font-medium text-white">Blog</a>
-				</div>
-			</div>
-		</div>
+                <p class="special-font text-4xl sm:text-5xl font-bold mb-3 fade-up-0"><span
+                        class="blue-gradient">Hey :)</span><span class="emoji">👋</span></p>
+                <p class="special-font text-4xl sm:text-5xl font-bold mb-6 fade-up-2">My name is Emiel</p>
+                <div class="text-3xl blue-gradient fade-up-4 mb-4">
+                    <Typewriter messages={["< Passionate developer />", "< Full Stack />", "< Hobbyist />",]}/>
+                </div>
+                    <p class="text fade-up-4 sm:max-w-[55rem] text-gray-500 text-xl mb-4">A recent Software Engineering
+                        graduate from Howest Brugge with a broad
+                        interest in various IT fields. I have primarily developed my skills in creating web
+                        applications and am eager to expand my expertise into new areas as needed.
+                    </p>
+                    <div class="mb-4 flex items-center thin text-sm gap-2 fade-up-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-white"
+                             viewBox="0 -960 960 960">
+                            <path d="M480-480q33 0 56.5-23.5T560-560t-23.5-56.5T480-640t-56.5 23.5T400-560t23.5 56.5T480-480m0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800t-170.5 69.5T240-552q0 71 59 162.5T480-186m0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880t223.5 89T800-552q0 100-79.5 217.5T480-80m0-480"/>
+                        </svg>
+                        Bruges, Belgium
 
-		<SmoothScroll client:only="react" />
-	</body>
+                    </div>
+                    <DownloadButton downloadUrl="/files/CV-Emiel-Delaey.pdf" class="fade-up-8 grow-0">
+                        Download CV
+                    </DownloadButton>
+                </div>
+
+                <a class="scroll-indicator block smooth-link scroll-indicator-init" href="#about">
+                    <div class="scroll-dot"></div>
+                </a>
+            </div>
+
+        </section>
+        <section id="about" class="max-w-screen-xl px-4 md:py-10 mx-auto pt-6 xs:pt-0">
+            <h2 class="text-2xl h-20">About</h2>
+        </section>
+        <section id="blog" class="max-w-screen-xl px-4 md:py-10 mx-auto pt-6 xs:pt-0">
+            <h2 class="text-2xl h-20">Blog</h2>
+        </section>
+    </main>
+    <!-- <Footer /> -->
+    <div id="menuSidebar" class="sidebar-menu fixed sm:hidden">
+        <div class="internal-links flex flex-col gap-10 p-6">
+            <a href="#start" class="uppercase font-medium text-white">Home</a>
+            <a href="#about" class="uppercase font-medium text-white">About</a>
+            <a href="#blog" class="uppercase font-medium text-white">Blog</a>
+        </div>
+    </div>
+</div>
+
+<SmoothScroll client:only="react"/>
+</body>
 </html>
