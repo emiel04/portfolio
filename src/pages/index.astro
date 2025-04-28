@@ -2,13 +2,13 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import {SITE_TITLE, SITE_DESCRIPTION, LINKEDIN_URL, GITHUB_URL} from '../consts';
-import SmoothScroll from '../components/SmoothScroll';
 import Typewriter from "astro-typewriter";
 import DownloadButton from "../components/DownloadButton.astro";
 import '../styles/scroll-indicator.css'
 import LinkButton from "../components/LinkButton.astro";
 import GlowCard from "../components/GlowCard.astro";
 import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+import SmoothScroll from "../components/SmoothScroll.astro";
 
 ---
 
@@ -135,6 +135,6 @@ import ExperienceTimeline from '../components/ExperienceTimeline.astro';
     </div>
 </div>
 
-<SmoothScroll client:only="react"/>
+<SmoothScroll />
 </body>
 </html>
