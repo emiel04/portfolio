@@ -7,6 +7,7 @@ import Typewriter from "astro-typewriter";
 import DownloadButton from "../components/DownloadButton.astro";
 import '../styles/scroll-indicator.css'
 import LinkButton from "../components/LinkButton.astro";
+import GlowCard from "../components/GlowCard.astro";
 ---
 
 <!doctype html>
@@ -62,18 +63,53 @@ import LinkButton from "../components/LinkButton.astro";
         <section id="about" class="max-w-screen-xl px-4 md:py-10 mx-auto pt-6 xs:pt-0">
             <div class="text-center">
                 <h2 class="text-2xl sm:text-5xl font-bold mb-3 special-font">
-                <span class="blue-gradient">
-                    About
-                </span>
-                    Emiel
+                    <span class="blue-gradient">About</span> Emiel
                 </h2>
-                <p>Who am I?</p>
+                <p class="text-gray-400 mb-6">A little more about who I am.</p>
             </div>
 
+            <div class="grid md:grid-cols-2 gap-8">
+                <ul class="space-y-6 text-lg">
+                    <li class="flex items-center gap-4">
+                        <span class="text-3xl min-w-10 text-center">👨‍💻</span>
+                        <span>I'm a passionate Software Engineer specialized in web development and modern technologies like Node.js, React, and Spring Boot.</span>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span class="text-3xl min-w-10 text-center">🎓</span>
+                        <span>Graduated from Howest Brugge with a Bachelor in Applied Computer Science, with strong practical experience through internships and personal projects.</span>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span class="text-3xl min-w-10 text-center">🛠</span>
+                        <span>Skilled across both front-end and back-end stacks. Comfortable with tools like Vue, React Native, Spring Boot, and relational databases.</span>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span class="text-3xl min-w-10 text-center">💡</span>
+                        <span>Always eager to learn, grow, and embrace new challenges in the ever-evolving tech world.</span>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <span class="text-3xl min-w-10 text-center">🌍</span>
+                        <span>Based in Bruges, Belgium - fluent in Dutch, proficient in English, and a basic user of French.</span>
+                    </li>
+                </ul>
 
+                <div class="flex justify-center">
+                    <GlowCard class="p-6 text-center">
+                        <h3 class="text-2xl font-bold mb-4">What drives me?</h3>
+                        <p class="text-gray-400 text-lg">
+                            Creativity, collaboration, and a passion for solving real-world problems through technology.
+                        </p>
+                    </GlowCard>
+                </div>
+            </div>
         </section>
         <section id="blog" class="max-w-screen-xl px-4 md:py-10 mx-auto pt-6 xs:pt-0">
             <h2 class="text-2xl h-20">Blog</h2>
+            <GlowCard>
+                <p>Hello</p>
+                <h2 class="text-2xl font-bold mb-4">My Awesome Card</h2>
+                <p>Hover over me to see the soft glow follow your mouse!</p>
+            </GlowCard>
+
         </section>
     </main>
     <!-- <Footer /> -->

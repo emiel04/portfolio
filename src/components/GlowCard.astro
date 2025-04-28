@@ -1,0 +1,39 @@
+---
+const { children, class: className } = Astro.props;
+---
+
+<div
+        class="relative group overflow-hidden rounded-2xl p-8 bg-[#0f1923] text-white shadow-lg glow-card"
+>
+    <div
+            class="pointer-events-none absolute -inset-0 opacity-0 transition-all duration-300 group-hover:opacity-100"
+            style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(11,88,202,0.15), transparent 40%);"
+    ></div>
+    <slot>{children}</slot>
+</div>
+
+<script type="module" is:inline>
+    const cards = document.querySelectorAll('.glow-card');
+
+    cards.forEach((card) => {
+        let mouseX = 0;
+        let mouseY = 0;
+        let animationFrameId = null;
+
+        function updateGlow() {
+            card.style.setProperty('--mouse-x', `${mouseX}px`);
+            card.style.setProperty('--mouse-y', `${mouseY}px`);
+            animationFrameId = null;
+        }
+
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+
+            if (animationFrameId === null) {
+                animationFrameId = requestAnimationFrame(updateGlow);
+            }
+        });
+    });
+</script>
