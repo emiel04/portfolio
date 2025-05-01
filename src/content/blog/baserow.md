@@ -17,7 +17,7 @@ The speaker started by setting the stage, defining **no-code** as software desig
 These tools are booming for several reasons:
 
 * They significantly **decrease the technical skill gap**, empowering more people to build applications or automate processes.
-* For technical folks, they offer a way to create **quick proofs-of-concept (POCs)** or internal tools without extensive development time.
+* For technical people, they offer a way to create **quick proofs-of-concepts** or internal tools without extensive development time.
 * It's a massive market, reportedly valued at **$187 billion**, with popular examples including WordPress, Wix, Glide, and automation tools like n8n.
 
 However, the speaker also highlighted common drawbacks found in many no-code/low-code solutions:
