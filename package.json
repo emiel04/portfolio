@@ -12,13 +12,13 @@
 		"check": "npm run lint && npm run format"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "^12.5.1",
-		"@astrojs/mdx": "^4.2.5",
+		"@astrojs/cloudflare": "^12.5.2",
+		"@astrojs/mdx": "^4.2.6",
 		"@astrojs/rss": "^4.0.11",
 		"@astrojs/sitemap": "^3.3.1",
 		"@tailwindcss/vite": "^4.1.4",
 		"aos": "^2.3.4",
-		"astro": "^5.7.5",
+		"astro": "^5.7.10",
 		"astro-typewriter": "^1.1.0",
 		"gsap": "^3.12.7",
 		"tailwindcss": "^4.1.4"
