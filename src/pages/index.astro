@@ -11,6 +11,7 @@ import ExperienceTimeline from "../components/ExperienceTimeline.astro";
 import SmoothScroll from "../components/SmoothScroll.astro";
 import BlogList from "../components/BlogList.astro";
 import Footer from "../components/Footer.astro";
+import BackToTop from "../components/BackToTop.astro";
 ---
 
 <!doctype html>
@@ -29,7 +30,7 @@ import Footer from "../components/Footer.astro";
 					class="xs:pt-0 mx-auto flex max-w-screen-xl flex-col justify-center px-4 pt-6 md:py-10 lg:min-h-[500px]"
 				>
 					<div class="mb-20 md:mb-36">
-						<div class="mt-20 mb-52">
+						<div class="mt-20 mb-35 md:mb-52">
 							<p class="special-font fade-up-0 mb-3 text-4xl font-bold sm:text-5xl">
 								<span class="blue-gradient">Hey :)</span><span class="emoji">👋</span>
 							</p>
@@ -203,11 +204,12 @@ import Footer from "../components/Footer.astro";
 				</section>
 			</main>
 			<Footer />
+			<BackToTop />
 			<div id="menuSidebar" class="sidebar-menu fixed sm:hidden">
 				<div class="internal-links flex flex-col gap-10 p-6">
-					<a href="#start" class="font-medium text-white uppercase">Home</a>
-					<a href="#about" class="font-medium text-white uppercase">About</a>
-					<a href="#blog" class="font-medium text-white uppercase">Blog</a>
+					<a href="#start" class="smooth-link font-medium text-white uppercase">Home</a>
+					<a href="#about" class="smooth-link font-medium text-white uppercase">About</a>
+					<a href="#blog" class="smooth-link font-medium text-white uppercase">Blog</a>
 				</div>
 			</div>
 		</div>
