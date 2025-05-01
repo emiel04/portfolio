@@ -40,25 +40,25 @@
 		});
 
 		// Fade-up animations
-        gsap.utils.toArray("[class*='fade-up-']").forEach((el) => {
-            const element = el as HTMLElement;
-            const delayMatch = [...element.classList].find((cls) => cls.startsWith("fade-up-"));
-            const delayNum = delayMatch ? parseInt(delayMatch.replace("fade-up-", ""), 10) : 0;
-            const delay = delayNum * 0.075;
+		gsap.utils.toArray("[class*='fade-up-']").forEach((el) => {
+			const element = el as HTMLElement;
+			const delayMatch = [...element.classList].find((cls) => cls.startsWith("fade-up-"));
+			const delayNum = delayMatch ? parseInt(delayMatch.replace("fade-up-", ""), 10) : 0;
+			const delay = delayNum * 0.075;
 
-            gsap.from(element, {
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                delay: delay,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top 90%",
-                    toggleActions: "play none none none",
-                },
-            });
-        });
+			gsap.from(element, {
+				y: 30,
+				opacity: 0,
+				duration: 0.8,
+				delay: delay,
+				ease: "power2.out",
+				scrollTrigger: {
+					trigger: element,
+					start: "top 90%",
+					toggleActions: "play none none none",
+				},
+			});
+		});
 	}
 	initializeSmoothScroll();
 </script>
