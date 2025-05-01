@@ -4,17 +4,17 @@ import Button from "./Button.astro";
 
 <div class="w-full max-w-2xl mx-auto">
     <div class="text-center mb-12">
-        <h2 class="special-font text-2xl font-bold sm:text-5xl mb-3">
+        <h2 class="special-font text-2xl font-bold sm:text-5xl mb-3 fade-up-0">
             <span class="blue-gradient">Get in</span> Touch
         </h2>
-        <p class="text-gray-400">Have a question or want to work together?</p>
+        <p class="text-gray-400 fade-up-2">Have a question or want to work together?</p>
     </div>
 
     <form id="contact-form" class="space-y-6">
         <input type="hidden" name="access_key" value="6a025050-4e00-468b-b3b8-4afe13db92ff">
         <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
         
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 fade-up-4">
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Name</label>
                 <input
@@ -38,7 +38,7 @@ import Button from "./Button.astro";
                 />
             </div>
         </div>
-        <div>
+        <div class="fade-up-6">
             <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Message</label>
             <textarea
                 id="message"
@@ -49,7 +49,7 @@ import Button from "./Button.astro";
                 placeholder="Your message here..."
             ></textarea>
         </div>
-        <div class="flex flex-col items-center gap-4">
+        <div class="flex flex-col items-center gap-4 fade-up-8">
             <Button type="submit">Send Message</Button>
             <div id="result" class="text-sm min-h-[20px]"></div>
         </div>
