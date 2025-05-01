@@ -9,6 +9,7 @@ import LinkButton from "../components/LinkButton.astro";
 import GlowCard from "../components/GlowCard.astro";
 import ExperienceTimeline from "../components/ExperienceTimeline.astro";
 import SmoothScroll from "../components/SmoothScroll.astro";
+import BlogList from "../components/BlogList.astro";
 ---
 
 <!doctype html>
@@ -177,13 +178,16 @@ import SmoothScroll from "../components/SmoothScroll.astro";
 						</div>
 					</div>
 				</section>
-				<section id="blog" class="xs:pt-0 mx-auto max-w-screen-xl px-4 pt-6 md:py-10">
-					<h2 class="h-20 text-2xl">Blog</h2>
-					<GlowCard>
-						<p>Hello</p>
-						<h2 class="mb-4 text-2xl font-bold">My Awesome Card</h2>
-						<p>Hover over me to see the soft glow follow your mouse!</p>
-					</GlowCard>
+				<section id="blog" class="xs:pt-0 mx-auto max-w-screen-xl px-4 pt-6 md:py-20">
+					<div class="mb-12 text-center">
+						<h2 class="special-font text-2xl font-bold sm:text-5xl">
+							<span class="blue-gradient">Blog</span> Posts
+						</h2>
+						<p class="mt-2 text-gray-400">My latest thoughts and findings.</p>
+					</div>
+					<div class="max-w-3xl mx-auto">
+						<BlogList />
+					</div>
 				</section>
 				<section id="experience" class="xs:pt-0 mx-auto max-w-screen-xl px-4 pt-6 md:py-10">
 					<div class="mb-12 text-center">
