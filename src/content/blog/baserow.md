@@ -1,5 +1,5 @@
 ---
-title: "Baserow: An Open-Source Take on No-Code Databases | Howest Tech & Meet Recap"
+title: "Baserow: An Open-Source Take on No-Code Databases"
 description: "Recap of a Howest Tech and Meet session introducing the open-source no-code/low-code database platform, Baserow, and reflections on the potential of these tools."
 pubDate: "Oct 22 2024"
 heroImage: "/baserow.webp"

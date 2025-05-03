@@ -1,5 +1,5 @@
 ---
-title: "AI, The reality behind the hype | Howest Tech & Meet Recap"
+title: "AI, The reality behind the hype"
 description: "Recap of a Howest Tech and Meet session exploring the reality behind the AI hype, different approaches to AI, its societal impact, and its role in software development."
 pubDate: "Dec 10 2024"
 heroImage: "/ai-de-realiteit-achter-de-hype.webp"
