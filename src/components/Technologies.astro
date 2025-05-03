@@ -1,0 +1,113 @@
+---
+import { Icon } from 'astro-icon/components'
+import GlowCard from "./GlowCard.astro";
+
+const technologies = [
+  {
+    name: 'Languages',
+    items: [
+      { name: 'JavaScript', icon: 'javascript' },
+      { name: 'TypeScript', icon: 'ts' },
+      { name: 'Java', icon: 'java' },
+      { name: 'C#', icon: 'cs' },
+    ],
+  },
+  {
+    name: 'Frontend',
+    items: [
+      { name: 'React', icon: 'react' },
+      { name: 'Vue', icon: 'vue' },
+      { name: 'HTML', icon: 'html' },
+      { name: 'CSS', icon: 'css' },
+      { name: 'Tailwind CSS', icon: 'tailwindcss' },
+      { name: 'WordPress', icon: 'wordpress' },
+    ],
+  },
+  {
+    name: 'Backend',
+    items: [
+      { name: 'Node.js', icon: 'nodejs' },
+      { name: 'Deno', icon: 'deno' },
+      { name: 'Spring', icon: 'spring' },
+      { name: '.NET', icon: 'net' },
+      { name: 'Laravel', icon: 'laravel' },
+      { name: 'PostgreSQL', icon: 'postgresql' },
+      { name: 'MySQL', icon: 'mysql' },
+      { name: 'RabbitMQ', icon: 'rabbitmq' },
+    ],
+  },
+  {
+    name: 'Dev Tools',
+    items: [
+      { name: 'Git', icon: 'git' },
+      { name: 'GitLab', icon: 'gitlab' },
+      { name: 'VS Code', icon: 'vscode' },
+      { name: 'JetBrains', icon: 'jetbrains' },
+    ],
+  },
+];
+---
+
+<div class="mx-auto w-full">
+  <div class="grid gap-12">
+    {technologies.map((category) => (
+      <div class="tech-category">
+        <h3 class="mb-6 text-lg font-medium text-accent text-center">{category.name}</h3>
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 max-w-screen-md mx-auto">
+          {category.items.map((tech) => (
+              <GlowCard>
+                <div class="tech-item group flex items-center gap-3 rounded-lg bg-secondary/20 p-3 transition-colors duration-200 hover:bg-secondary/40">
+                  <Icon
+                      name={tech.icon}
+                      class="h-5 w-5 text-gray-400 transition-colors duration-200 group-hover:text-accent"
+                  />
+                  <span class="text-sm text-gray-400 transition-colors duration-200 group-hover:text-white hover:cursor-default">
+                {tech.name}
+              </span>
+                </div>
+              </GlowCard>
+
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray(".tech-category").forEach((category, i) => {
+    gsap.from(category, {
+      scrollTrigger: {
+        trigger: category,
+        start: "top 90%",
+        toggleActions: "play none none none",
+      },
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: "power3.out",
+      delay: i * 0.1,
+    });
+  });
+
+  // Animate each tech-item when its parent category comes into view
+  gsap.utils.toArray(".tech-category").forEach((category) => {
+    const items = category.querySelectorAll(".tech-item");
+    gsap.from(items, {
+      scrollTrigger: {
+        trigger: category,
+        start: "top 80%",
+      },
+      opacity: 0,
+      y: 20,
+      stagger: 0.05,
+      duration: 0.4,
+      ease: "power2.out",
+    });
+  });
+
+</script>

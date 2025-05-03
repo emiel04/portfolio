@@ -1,12 +1,12 @@
 ---
-const { children } = Astro.props;
+const { children, class: className } = Astro.props;
 ---
 
 <div
-	class="group glow-card relative overflow-hidden rounded-2xl bg-[#0f1923] p-8 text-white shadow-lg"
+	class:list={[className, "group glow-card relative overflow-hidden rounded-2xl bg-[#0f1923] text-white shadow-lg"]}
 >
 	<div
-		class="pointer-events-none absolute -inset-0 opacity-0 transition-all duration-300 group-hover:opacity-100"
+		class:list={[ "pointer-events-none absolute -inset-0 opacity-0 transition-all duration-300 group-hover:opacity-100", ]}
 		style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(11,88,202,0.15), transparent 40%);"
 	>
 	</div>
