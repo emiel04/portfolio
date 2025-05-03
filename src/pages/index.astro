@@ -12,8 +12,7 @@ import SmoothScroll from "../components/SmoothScroll.astro";
 import BlogList from "../components/BlogList.astro";
 import Footer from "../components/Footer.astro";
 import BackToTop from "../components/BackToTop.astro";
-import Technologies from '../components/Technologies.astro';
-
+import Technologies from "../components/Technologies.astro";
 ---
 
 <!doctype html>
@@ -72,9 +71,10 @@ import Technologies from '../components/Technologies.astro';
 								>
 								Bruges, Belgium
 							</div>
-							<div class="flex gap-3">
+							<div class="flex flex-wrap gap-3">
 								<DownloadButton downloadUrl="/files/CV-Emiel-Delaey.pdf" class="fade-up-8 grow-0">
-									Download CV
+									<span class="hide-mini">Download CV</span>
+									<span class="show-mini-inline">My CV</span>
 								</DownloadButton>
 								<LinkButton class="fade-up-10" external linkUrl={LINKEDIN_URL} name="linkedin">
 									<svg
@@ -173,8 +173,8 @@ import Technologies from '../components/Technologies.astro';
 
 						<div class="fade-up-4 flex justify-center">
 							<GlowCard class="p-8">
-								<h3 class="mb-4 text-2xl font-bold fade-up-6">What drives me?</h3>
-								<p class="text-lg text-gray-400 fade-up-7">
+								<h3 class="fade-up-6 mb-4 text-2xl font-bold">What drives me?</h3>
+								<p class="fade-up-7 text-lg text-gray-400">
 									Creativity, collaboration, and a passion for solving real-world problems through
 									technology.
 								</p>
@@ -193,7 +193,7 @@ import Technologies from '../components/Technologies.astro';
 							Below are the technologies and tools I use to shape ideas into modern software.
 						</p>
 					</div>
-					<div class="fade-up-4 ">
+					<div class="fade-up-4">
 						<Technologies />
 					</div>
 				</section>
@@ -201,7 +201,6 @@ import Technologies from '../components/Technologies.astro';
 					<div class="mb-12 text-center">
 						<h2 class="special-font fade-up-0 mb-3 text-2xl font-bold sm:text-5xl">
 							My Developer<span class="blue-gradient">&nbspJourney</span>
-
 						</h2>
 						<p class="fade-up-2 text-gray-400">A glimpse into my professional journey.</p>
 					</div>
@@ -209,7 +208,7 @@ import Technologies from '../components/Technologies.astro';
 						<ExperienceTimeline />
 					</div>
 				</section>
-				<section id="blog" class="xs:pt-0 mx-auto max-w-screen-xl px-4 py-10 pt-6 md:py-20">
+				<section id="blog" class="xs:pt-0 mx-auto max-w-screen-xl px-4 py-10 pt-6">
 					<div class="mb-12 text-center">
 						<h2 class="special-font fade-up-0 mb-3 text-2xl font-bold sm:text-5xl">
 							<span class="blue-gradient">Blog</span> Posts

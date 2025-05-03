@@ -6,12 +6,12 @@ import Hamburger from "./Hamburger.astro";
 
 <header class="border-opacity-25 nav sticky top-0 z-50 border-b border-gray-600 backdrop-blur-lg">
 	<nav class="mx-auto flex max-w-screen-xl flex-row items-center justify-between gap-10 px-2 py-4">
-		<h1 class="hidden sm:block"><a href="/">{SITE_TITLE}</a></h1>
-		<h1 class="block sm:hidden"><a href="/">{SITE_TITLE.split("-")[0]}</a></h1>
+		<h1 class="hidden md:block"><a href="/">{SITE_TITLE}</a></h1>
+		<h1 class="block md:hidden"><a href="/">{SITE_TITLE.split("-")[0]}</a></h1>
 
-		<Hamburger class="relative z-[200] pr-3 sm:hidden" />
+		<Hamburger class="relative z-[200] pr-3 md:hidden" />
 
-		<div class="internal-links hidden gap-12 sm:flex">
+		<div class="internal-links hidden gap-12 md:flex">
 			<div class="group relative">
 				<HeaderLink href="#start" class="font-medium uppercase">Home</HeaderLink>
 				<div

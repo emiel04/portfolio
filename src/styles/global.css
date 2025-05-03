@@ -107,3 +107,21 @@ img {
 	background-clip: text;
 	-webkit-background-clip: text;
 }
+
+@media (max-width: 375px) {
+	.hide-mini {
+		display: none;
+	}
+	.show-mini-inline {
+		display: inline-block;
+	}
+}
+
+@media (min-width: 376px) {
+	.hide-mini {
+		display: inline-block;
+	}
+	.show-mini-inline {
+		display: none;
+	}
+}
