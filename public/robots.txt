@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
+Disallow: /*.webp$
 
-Sitemap: https://emiel04.5139512.xyz/sitemap-index.xml
+Sitemap: https://5139512.xyz/sitemap-index.xml
