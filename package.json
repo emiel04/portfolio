@@ -19,6 +19,7 @@
 		"@tailwindcss/vite": "^4.1.4",
 		"aos": "^2.3.4",
 		"astro": "^5.7.10",
+		"astro-icon": "^1.1.5",
 		"astro-typewriter": "^1.1.0",
 		"gsap": "^3.12.7",
 		"tailwindcss": "^4.1.4"
