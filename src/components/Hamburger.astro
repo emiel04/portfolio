@@ -13,6 +13,7 @@ const { class: className } = Astro.props;
 	document.addEventListener("DOMContentLoaded", function () {
 		const $hamburger = document.querySelector(".hamburger") as HTMLElement | null;
 		const $sidebarMenu = document.querySelector("#menuSidebar") as HTMLElement | null;
+		const navLinks = document.querySelectorAll("#menuSidebar a");
 
 		if (!$hamburger || !$sidebarMenu) {
 			return;
@@ -39,6 +40,13 @@ const { class: className } = Astro.props;
 
 		$sidebarMenu.addEventListener("click", function (event: MouseEvent) {
 			event.stopPropagation();
+		});
+
+		navLinks.forEach(link => {
+			link.addEventListener("click", () => {
+				$hamburger.classList.remove("is-active");
+				$sidebarMenu.classList.remove("open");
+			});
 		});
 	});
 </script>
