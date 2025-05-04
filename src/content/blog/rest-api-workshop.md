@@ -2,7 +2,7 @@
 title: "Giving a workshop about REST api's in my old school"
 description: "A look back at the workshop I hosted for students at my former school, where we explored the basics of REST APIs through hands-on coding exercises in Replit."
 pubDate: "Nov 7 2024"
-heroImage: "/to-be-determined.webp"
+heroImage: "/workshop-api.webp"
 tags:
   [
     "Workshop",
