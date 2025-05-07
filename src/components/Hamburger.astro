@@ -42,7 +42,7 @@ const { class: className } = Astro.props;
 			event.stopPropagation();
 		});
 
-		navLinks.forEach(link => {
+		navLinks.forEach((link) => {
 			link.addEventListener("click", () => {
 				$hamburger.classList.remove("is-active");
 				$sidebarMenu.classList.remove("open");

@@ -7,9 +7,9 @@ import icon from "astro-icon";
 import compress from "astro-compress";
 // https://astro.build/config
 export default defineConfig({
-    site: "https://5139512.xyz/",
-    integrations: [mdx(), sitemap(), icon(), compress()],
-    vite: {
-        plugins: [tailwindcss()],
-    },
+	site: "https://5139512.xyz/",
+	integrations: [mdx(), sitemap(), icon(), compress()],
+	vite: {
+		plugins: [tailwindcss()],
+	},
 });
