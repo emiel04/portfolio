@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /*.webp$
 
-Sitemap: https://5139512.xyz/sitemap-index.xml
+Sitemap: https://emield.be/sitemap-index.xml
