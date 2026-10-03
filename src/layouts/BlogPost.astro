@@ -167,8 +167,11 @@ const { title, description, pubDate, updatedDate, heroImage, readingTime } = Ast
 	if (inline && float) {
 		new IntersectionObserver(
 			([entry]) => {
-				// Only show it after the inline link has scrolled up out of view, not before
-				const show = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+				// Show it once the inline link has gone up behind the header, not when it is still
+				// below the screen. The observer only fires when the link crosses the header edge,
+				// so compare with that edge (64px), not with the top of the screen.
+				const headerEdge = entry.rootBounds?.top ?? 64;
+				const show = !entry.isIntersecting && entry.boundingClientRect.bottom <= headerEdge;
 				float.toggleAttribute("data-visible", show);
 				float.tabIndex = show ? 0 : -1;
 				float.setAttribute("aria-hidden", String(!show));

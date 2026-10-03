@@ -13,6 +13,8 @@ const posts = (await getCollection("blog")).sort(
 const shown = limit ? posts.slice(0, limit) : posts;
 ---
 
+{shown.length === 0 && <p class="text-muted">No posts yet.</p>}
+
 <ul class="post-list -mx-3 -mt-3.5">
 	{
 		shown.map((post) => (

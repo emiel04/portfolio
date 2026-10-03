@@ -10,6 +10,12 @@ const links = [
 const hrefFor = (id: string) => (isHome ? `#${id}` : `/#${id}`);
 ---
 
+<a
+	href="#main"
+	class="focus:bg-fg focus:text-bg sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-md focus:px-3 focus:py-2"
+	>Skip to content</a
+>
+
 <header data-header class="site-header sticky top-0 z-50">
 	<nav class="container-page flex h-16 items-center justify-between" aria-label="Main">
 		<a href="/" class="font-display text-fg text-[15px] font-semibold"> Emiel Delaey </a>
@@ -196,11 +202,23 @@ const hrefFor = (id: string) => (isHome ? `#${id}` : `/#${id}`);
 	if (sections.length > 0) {
 		const observer = new IntersectionObserver(
 			(entries) => {
-				for (const entry of entries) {
-					if (!entry.isIntersecting) continue;
-					navLinks.forEach((link) =>
-						link.toggleAttribute("data-active", link.dataset.nav === entry.target.id),
-					);
+				// Handle sections leaving the middle band first, so a section entering
+				// in the same batch still wins. Leaving without a new one (like scrolling
+				// back up into the hero) clears the highlight.
+				const ordered = [...entries].sort(
+					(a, b) => Number(a.isIntersecting) - Number(b.isIntersecting),
+				);
+				for (const entry of ordered) {
+					const id = (entry.target as HTMLElement).id;
+					if (entry.isIntersecting) {
+						navLinks.forEach((link) =>
+							link.toggleAttribute("data-active", link.dataset.nav === id),
+						);
+					} else {
+						navLinks.forEach((link) => {
+							if (link.dataset.nav === id) link.removeAttribute("data-active");
+						});
+					}
 				}
 			},
 			{ rootMargin: "-45% 0px -50% 0px" },

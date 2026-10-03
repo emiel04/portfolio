@@ -112,6 +112,6 @@ const { title, description, image = "/portfolio-og.jpg" } = Astro.props;
 		const onScroll = () => {
 			if (!frame) frame = requestAnimationFrame(sweep);
 		};
-		window.addEventListener("scroll", onScroll, { passive: true });
+		if (pending.size > 0) window.addEventListener("scroll", onScroll, { passive: true });
 	}
 </script>
