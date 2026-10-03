@@ -1,242 +1,201 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
-import { SITE_TITLE, SITE_DESCRIPTION, LINKEDIN_URL, GITHUB_URL } from "../consts";
-import Typewriter from "astro-typewriter";
-import DownloadButton from "../components/DownloadButton.astro";
-import "../styles/scroll-indicator.css";
-import LinkButton from "../components/LinkButton.astro";
-import GlowCard from "../components/GlowCard.astro";
-import ExperienceTimeline from "../components/ExperienceTimeline.astro";
-import SmoothScroll from "../components/SmoothScroll.astro";
-import BlogList from "../components/BlogList.astro";
 import Footer from "../components/Footer.astro";
-import BackToTop from "../components/BackToTop.astro";
+import Section from "../components/Section.astro";
 import Technologies from "../components/Technologies.astro";
+import ExperienceTimeline from "../components/ExperienceTimeline.astro";
+import BlogList from "../components/BlogList.astro";
+import ContactForm from "../components/ContactForm.astro";
+import { SITE_TITLE, SITE_DESCRIPTION, LINKEDIN_URL, GITHUB_URL } from "../consts";
+
+const CV_URL = "/files/CV-Emiel-Delaey.pdf";
+
+const facts = [
+	{ label: "Based in", value: "Bruges, Belgium" },
+	{ label: "Studied", value: "Applied Computer Science at Howest" },
+	{ label: "Languages", value: "Dutch (native), English (fluent)" },
+];
 ---
 
 <!doctype html>
-<html data-theme="dark" lang="en">
+<html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<div class="main-content bg-primary relative z-200 text-gray-200" id="start">
-			<div class="bg"></div>
-			<Header />
+		<a
+			href="#main"
+			class="focus:bg-fg focus:text-bg sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-md focus:px-3 focus:py-2"
+			>Skip to content</a
+		>
+		<Header />
 
-			<main class="relative">
-				<section
-					id="home"
-					class="xs:pt-0 mx-auto flex max-w-screen-xl flex-col justify-center px-4 pt-6 md:py-10 lg:min-h-[500px]"
-				>
-					<div class="mb-20 md:mb-36">
-						<div class="mt-20 mb-35 md:mb-52">
-							<p class="special-font fade-up-0 mb-3 text-4xl font-bold sm:text-5xl">
-								<span class="blue-gradient">Hey :)</span><span
-									class="emoji"
-									role="img"
-									aria-label="waving hand">👋</span
-								>
-							</p>
-							<p class="special-font fade-up-2 mb-6 text-4xl font-bold sm:text-5xl">
-								My name is Emiel
-							</p>
-							<div class="blue-gradient fade-up-4 mb-4 text-3xl">
-								<Typewriter
-									messages={[
-										"< Passionate developer />",
-										"< Full Stack />",
-										"< Hobbyist />",
-										"< Team player />",
-									]}
-								/>
-							</div>
-							<p class="text fade-up-4 mb-4 text-xl text-gray-500 sm:max-w-[55rem]">
-								A full-stack developer at BrightAnalytics, building a financial reporting platform
-								with Laravel. I care about clean, well-tested code and am always eager to expand my
-								expertise into new areas.
-							</p>
-							<address class="thin fade-up-6 mb-4 flex items-center gap-2 text-sm not-italic">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="24"
-									height="24"
-									viewBox="0 0 24 24"
-									fill="none"
+		<main id="main">
+			<section class="relative -mt-16 overflow-hidden pt-16">
+				<div class="hero-glow" aria-hidden="true"></div>
+				<div class="hero-grid" aria-hidden="true"></div>
+
+				<div class="container-page relative pt-20 pb-20 sm:pt-32 sm:pb-24 md:pt-40 md:pb-28">
+					<h1
+						class="enter font-display max-w-[17ch] text-[clamp(2.5rem,7.2vw,4.75rem)] leading-[1.03] font-semibold tracking-[-0.03em] text-balance"
+						style="--i: 0"
+					>
+						Hi, I'm Emiel.<span class="wave" role="img" aria-label="waving hand">👋</span><br />
+						<span class="text-blue">I build software, mostly the parts you don't see.</span>
+					</h1>
+
+					<p
+						class="enter text-muted mt-6 max-w-[54ch] text-lg leading-relaxed sm:text-xl sm:leading-relaxed"
+						style="--i: 1"
+					>
+						Full-stack developer at <span class="text-fg">BrightAnalytics</span>, working on a
+						financial reporting platform with Laravel and Go, where the numbers always have to be
+						right.
+					</p>
+
+					<div class="enter mt-9 flex flex-wrap gap-3" style="--i: 2">
+						<a href={CV_URL} download class="btn btn-primary">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+								<path
+									d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14"
 									stroke="currentColor"
 									stroke-width="2"
 									stroke-linecap="round"
-									stroke-linejoin="round"
-									class="lucide lucide-map-pin-icon lucide-map-pin"
-									><path
-										d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
-									></path><circle cx="12" cy="10" r="3"></circle></svg
-								>
-								Bruges, Belgium
-							</address>
-							<div class="flex flex-wrap gap-3">
-								<DownloadButton downloadUrl="/files/CV-Emiel-Delaey.pdf" class="fade-up-8 grow-0">
-									<span class="hide-mini">Download CV</span>
-									<span class="show-mini-inline">My CV</span>
-								</DownloadButton>
-								<LinkButton class="fade-up-10" external linkUrl={LINKEDIN_URL} name="linkedin">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="24"
-										height="24"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										class="lucide lucide-linkedin-icon lucide-linkedin"
-										><path
-											d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-										></path><rect width="4" height="12" x="2" y="9"></rect><circle
-											cx="4"
-											cy="4"
-											r="2"></circle></svg
-									>
-								</LinkButton>
-								<LinkButton class="fade-up-12" external linkUrl={GITHUB_URL} name="github">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="24"
-										height="24"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										class="lucide lucide-github-icon lucide-github"
-										><path
-											d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
-										></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg
-									>
-								</LinkButton>
-							</div>
-						</div>
-
+									stroke-linejoin="round"></path>
+							</svg>
+							Download CV
+						</a>
 						<a
-							class="scroll-indicator smooth-link scroll-indicator-init block"
-							href="#about"
-							aria-label="Scroll to About section"
+							href={LINKEDIN_URL}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="btn btn-ghost max-sm:w-10 max-sm:justify-center max-sm:px-0"
 						>
-							<div class="scroll-dot"></div>
+							<svg
+								class="size-4 shrink-0"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+								aria-hidden="true"
+							>
+								<path
+									d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"
+								></path>
+							</svg>
+							<span class="max-sm:sr-only">LinkedIn</span>
+						</a>
+						<a
+							href={GITHUB_URL}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="btn btn-ghost max-sm:w-10 max-sm:justify-center max-sm:px-0"
+						>
+							<svg
+								class="size-4 shrink-0"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+								aria-hidden="true"
+							>
+								<path
+									d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"
+								></path>
+							</svg>
+							<span class="max-sm:sr-only">GitHub</span>
 						</a>
 					</div>
-				</section>
-				<section id="about" class="xs:pt-0 mx-auto max-w-screen-xl px-4 pt-6 md:py-10">
-					<div class="mb-12 text-center">
-						<h2 class="special-font fade-up-0 mb-3 text-2xl font-bold sm:text-5xl">
-							<span class="blue-gradient">About</span> Emiel
-						</h2>
-						<p class="fade-up-2 text-gray-400">A little more about who I am.</p>
-					</div>
 
-					<div class="grid gap-8 md:grid-cols-2">
-						<ul class="space-y-6 text-lg">
-							<li class="fade-up-2 flex items-center gap-4">
-								<span class="fade-up-0 min-w-10 text-center text-3xl">👨‍💻</span>
-								<span
-									>I'm a passionate Software Engineer specialized in web development, with a focus
-									on building maintainable, well-tested applications.</span
-								>
-							</li>
-							<li class="fade-up-2 flex items-center gap-4">
-								<span class="fade-up-0 min-w-10 text-center text-3xl">🎓</span>
-								<span
-									>Graduated from Howest Brugge with a Bachelor in Applied Computer Science, now
-									with a year of professional experience on a production SaaS platform.</span
-								>
-							</li>
-							<li class="fade-up-2 flex items-center gap-4">
-								<span class="fade-up-0 min-w-10 text-center text-3xl">🛠</span>
-								<span
-									>Skilled across both front-end and back-end stacks. Working daily with Laravel and
-									Go, and comfortable with Vue, React Native, Spring Boot, and relational databases.</span
-								>
-							</li>
-							<li class="fade-up-2 flex items-center gap-4">
-								<span class="fade-up-0 min-w-10 text-center text-3xl">💡</span>
-								<span
-									>Always eager to learn, grow, and embrace new challenges in the ever-evolving tech
-									world.</span
-								>
-							</li>
-							<li class="fade-up-2 flex items-center gap-4">
-								<span class="fade-up-0 min-w-10 text-center text-3xl">🌍</span>
-								<span
-									>Based in Bruges, Belgium - I am a native Dutch speaker and fluent in English.</span
-								>
-							</li>
-						</ul>
-
-						<div class="fade-up-4 flex justify-center">
-							<GlowCard class="p-8">
-								<h3 class="fade-up-6 mb-4 text-2xl font-bold">What drives me?</h3>
-								<p class="fade-up-7 text-lg text-gray-400">
-									Creativity, collaboration, and a passion for solving real-world problems through
-									technology.
-								</p>
-							</GlowCard>
-						</div>
-					</div>
-				</section>
-				<section id="skills" class="xs:pt-0 mx-auto max-w-screen-xl px-4 pt-6 md:py-10">
-					<div class="mb-12 text-center">
-						<h2 class="special-font fade-up-0 mb-3 text-2xl font-bold sm:text-5xl">
-							<span class="blue-gradient">Skills</span>
-							&
-							<span class="">Experience</span>
-						</h2>
-						<p class="fade-up-2 text-gray-400">
-							Below are the technologies and tools I use to shape ideas into modern software.
-						</p>
-					</div>
-					<div class="fade-up-4">
-						<Technologies />
-					</div>
-				</section>
-				<section id="journey" class="xs:pt-0 mx-auto max-w-screen-xl px-4 pt-6 md:py-10">
-					<div class="mb-12 text-center">
-						<h2 class="special-font fade-up-0 mb-3 text-2xl font-bold sm:text-5xl">
-							My Developer<span class="blue-gradient">&nbspJourney</span>
-						</h2>
-						<p class="fade-up-2 text-gray-400">A glimpse into my professional journey.</p>
-					</div>
-					<div class="fade-up-4 mx-auto max-w-screen-md">
-						<ExperienceTimeline />
-					</div>
-				</section>
-				<section id="blog" class="xs:pt-0 mx-auto max-w-screen-xl px-4 py-10 pt-6">
-					<div class="mb-12 text-center">
-						<h2 class="special-font fade-up-0 mb-3 text-2xl font-bold sm:text-5xl">
-							<span class="blue-gradient">Blog</span> Posts
-						</h2>
-						<p class="fade-up-2 text-gray-400">My latest thoughts and findings.</p>
-					</div>
-					<div class="fade-up-4 mx-auto max-w-3xl">
-						<BlogList />
-					</div>
-				</section>
-			</main>
-			<Footer />
-			<BackToTop />
-			<div id="menuSidebar" class="sidebar-menu fixed md:hidden">
-				<div class="internal-links flex flex-col gap-10 p-6">
-					<a href="#start" class="smooth-link font-medium text-white uppercase">Home</a>
-					<a href="#about" class="smooth-link font-medium text-white uppercase">About</a>
-					<a href="#skills" class="smooth-link font-medium text-white uppercase">Skills</a>
-					<a href="#journey" class="smooth-link font-medium text-white uppercase">Journey</a>
-					<a href="#blog" class="smooth-link font-medium text-white uppercase">Blog</a>
+					<p
+						class="enter text-faint mt-12 flex items-center gap-2 font-mono text-xs"
+						style="--i: 3"
+					>
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+							<path
+								d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0z"
+								stroke="currentColor"
+								stroke-width="2"></path>
+							<circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"></circle>
+						</svg>
+						Bruges, Belgium
+						<span data-clock hidden>
+							<span aria-hidden="true">·</span>
+							<time></time> local time
+						</span>
+					</p>
 				</div>
-			</div>
-		</div>
+			</section>
 
-		<SmoothScroll />
+			<Section id="about" label="About">
+				<div class="text-muted max-w-[60ch] space-y-5 text-lg leading-relaxed">
+					<p data-reveal>
+						I studied Applied Computer Science at Howest in Bruges. After my internship at Citymesh,
+						I started at <span class="text-fg">BrightAnalytics</span>, where I've now worked for a
+						year.
+					</p>
+					<p data-reveal>
+						Most of my time goes to the backend, but I like to build a feature from start to finish,
+						from the database to the screen. I care about code that the next person can read, and
+						tests that catch problems before users do.
+					</p>
+					<p data-reveal>
+						Outside of work I like to self-host things and try out new tools. Sometimes I
+						<a href="#writing" class="link">write about it</a>.
+					</p>
+				</div>
+
+				<dl
+					data-reveal
+					class="border-line bg-line mt-10 grid max-w-[60ch] gap-px overflow-hidden rounded-xl border"
+				>
+					{
+						facts.map((fact) => (
+							<div class="bg-bg grid gap-1 px-4 py-3 sm:grid-cols-[7rem_1fr] sm:gap-4">
+								<dt class="text-faint font-mono text-xs sm:pt-1">{fact.label}</dt>
+								<dd class="text-fg text-[15px]">{fact.value}</dd>
+							</div>
+						))
+					}
+				</dl>
+			</Section>
+
+			<Section id="stack" label="Stack">
+				<Technologies />
+			</Section>
+
+			<Section id="work" label="Work">
+				<ExperienceTimeline />
+				<p data-reveal class="mt-8">
+					<a href={CV_URL} download class="link text-sm">Download my full CV (PDF)</a>
+				</p>
+			</Section>
+
+			<Section id="writing" label="Writing">
+				<BlogList limit={4} />
+			</Section>
+
+			<Section id="contact" label="Contact">
+				<ContactForm />
+			</Section>
+		</main>
+
+		<Footer />
+
+		<script>
+			const clock = document.querySelector<HTMLElement>("[data-clock]");
+			const time = clock?.querySelector("time");
+
+			if (clock && time) {
+				const format = new Intl.DateTimeFormat("en-GB", {
+					hour: "2-digit",
+					minute: "2-digit",
+					timeZone: "Europe/Brussels",
+				});
+				const tick = () => {
+					time.textContent = format.format(new Date());
+				};
+				tick();
+				clock.hidden = false;
+				setInterval(tick, 15_000);
+			}
+		</script>
 	</body>
 </html>

@@ -2,40 +2,30 @@
 import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
-import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
-import "../../styles/markdown-content.css";
-const posts = (await getCollection("blog")).sort(
-	(a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+import BlogList from "../../components/BlogList.astro";
+import { SITE_TITLE } from "../../consts";
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead
+			title={`Writing - ${SITE_TITLE}`}
+			description="Notes about things I built, events I went to, and what I learned."
+		/>
 	</head>
 	<body>
 		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post: any) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									<img width={720} height={360} src={post.data.heroImage} alt="" />
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
+		<main id="main" class="container-page">
+			<div class="mx-auto max-w-[44rem] pt-12 pb-24 md:pt-20">
+				<h1 class="font-display text-4xl font-semibold tracking-[-0.02em]">Writing</h1>
+				<p class="text-muted mt-3 text-lg">
+					Notes about things I built, events I went to, and what I learned.
+				</p>
+				<div class="mt-10">
+					<BlogList />
+				</div>
+			</div>
 		</main>
 		<Footer />
 	</body>

@@ -1,125 +1,169 @@
 ---
 import { Icon } from "astro-icon/components";
-import GlowCard from "./GlowCard.astro";
 
-const technologies = [
+const daily = [
+	{ name: "Laravel", icon: "laravel" },
+	{ name: "PHP", icon: "php" },
+	{ name: "Go", icon: "go" },
+];
+
+const groups = [
 	{
-		name: "Languages",
+		name: "I've also worked with",
 		items: [
-			{ name: "JavaScript", icon: "javascript" },
 			{ name: "TypeScript", icon: "ts" },
-			{ name: "Java", icon: "java" },
-			{ name: "C#", icon: "cs" },
-			{ name: "PHP", icon: "php" },
-			{ name: "Go", icon: "go" },
-		],
-	},
-	{
-		name: "Frontend",
-		items: [
-			{ name: "React", icon: "react" },
+			{ name: "JavaScript", icon: "javascript" },
 			{ name: "Vue", icon: "vue" },
+			{ name: "React", icon: "react" },
+			{ name: "Node.js", icon: "nodejs" },
+			{ name: "Java", icon: "java" },
+			{ name: "Spring", icon: "spring" },
+			{ name: "C#", icon: "cs" },
+			{ name: ".NET", icon: "net" },
+			{ name: "Deno", icon: "deno" },
+			{ name: "RabbitMQ", icon: "rabbitmq" },
+			{ name: "Tailwind CSS", icon: "tailwindcss" },
 			{ name: "HTML", icon: "html" },
 			{ name: "CSS", icon: "css" },
-			{ name: "Tailwind CSS", icon: "tailwindcss" },
 			{ name: "WordPress", icon: "wordpress" },
 		],
 	},
 	{
-		name: "Backend",
+		name: "Databases and tools",
 		items: [
-			{ name: "Node.js", icon: "nodejs" },
-			{ name: "Deno", icon: "deno" },
-			{ name: "Spring", icon: "spring" },
-			{ name: ".NET", icon: "net" },
-			{ name: "Laravel", icon: "laravel" },
-			{ name: "PostgreSQL", icon: "postgresql" },
 			{ name: "MySQL", icon: "mysql" },
-			{ name: "RabbitMQ", icon: "rabbitmq" },
-		],
-	},
-	{
-		name: "Dev Tools",
-		items: [
+			{ name: "PostgreSQL", icon: "postgresql" },
+			{ name: "Docker", icon: "docker" },
 			{ name: "Git", icon: "git" },
 			{ name: "GitLab", icon: "gitlab" },
 			{ name: "VS Code", icon: "vscode" },
-			{ name: "Docker", icon: "docker" },
 		],
 	},
 ];
 ---
 
-<div class="mx-auto w-full">
-	<div class="grid gap-12">
-		{
-			technologies.map((category) => (
-				<div class="tech-category">
-					<h3 class="text-accent mb-6 text-center text-lg font-medium">{category.name}</h3>
-					<div class="mx-auto grid max-w-screen-md grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-						{category.items.map((tech) => (
-							<GlowCard class="transition-all duration-200 hover:scale-110">
-								<div class="tech-item group bg-secondary/20 hover:bg-secondary/40 flex items-center gap-3 rounded-lg p-3 transition-colors duration-200">
-									<Icon
-										name={tech.icon}
-										class="group-hover:text-accent size-6 text-gray-400 transition-colors duration-200 sm:size-8"
-									/>
-									<span class="font-semibold text-gray-400 transition-colors duration-200 group-hover:text-white hover:cursor-default">
-										{tech.name}
-									</span>
-								</div>
-							</GlowCard>
-						))}
-					</div>
-				</div>
-			))
-		}
+<div class="space-y-10" data-spotlight>
+	<div data-reveal>
+		<h3 class="text-muted mb-4 text-sm">What I use every day</h3>
+		<ul class="grid grid-cols-3 gap-2 sm:gap-3">
+			{
+				daily.map((tech) => (
+					<li class="glow border-line bg-surface flex flex-col items-start gap-2.5 rounded-xl border p-3.5 sm:flex-row sm:items-center sm:gap-3 sm:px-4">
+						<Icon name={tech.icon} class="size-6 shrink-0" />
+						<span class="text-fg font-medium">{tech.name}</span>
+					</li>
+				))
+			}
+		</ul>
 	</div>
+
+	{
+		groups.map((group) => (
+			<div data-reveal>
+				<h3 class="text-muted mb-4 text-sm">{group.name}</h3>
+				<ul class="flex flex-wrap gap-2">
+					{group.items.map((tech) => (
+						<li class="glow border-line text-muted flex items-center gap-2 rounded-lg border px-2.5 py-1.5 text-sm">
+							<Icon name={tech.icon} class="size-4 shrink-0" />
+							{tech.name}
+						</li>
+					))}
+				</ul>
+			</div>
+		))
+	}
 </div>
 
+<style>
+	.glow {
+		position: relative;
+		isolation: isolate;
+	}
+	.glow::before,
+	.glow::after {
+		content: "";
+		position: absolute;
+		border-radius: inherit;
+		pointer-events: none;
+		opacity: 0;
+		transition: opacity 300ms ease;
+	}
+	/* Light on the border, only near the cursor */
+	.glow::before {
+		inset: -1px;
+		padding: 1px;
+		background: radial-gradient(
+			130px circle at var(--x, -999px) var(--y, -999px),
+			rgb(96 165 250 / 0.75),
+			transparent 70%
+		);
+		mask:
+			linear-gradient(#000 0 0) content-box,
+			linear-gradient(#000 0 0);
+		mask-composite: exclude;
+	}
+	/* Soft light inside the chip */
+	.glow::after {
+		inset: 0;
+		z-index: -1;
+		background: radial-gradient(
+			180px circle at var(--x, -999px) var(--y, -999px),
+			rgb(96 165 250 / 0.1),
+			transparent 70%
+		);
+	}
+	[data-spotlight][data-active] .glow::before,
+	[data-spotlight][data-active] .glow::after {
+		opacity: 1;
+	}
+</style>
+
 <script>
-	import { gsap } from "gsap";
-	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	gsap.registerPlugin(ScrollTrigger);
+	const root = document.querySelector<HTMLElement>("[data-spotlight]");
+	const hasMouse = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+	const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-	gsap.utils.toArray(".tech-category").forEach((category, i) => {
-		const el = category as HTMLElement;
+	if (root && hasMouse) {
+		const items = [...root.querySelectorAll<HTMLElement>(".glow")];
+		const target = { x: 0, y: 0 };
+		const current = { x: 0, y: 0 };
+		let frame = 0;
 
-		gsap.from(el, {
-			scrollTrigger: {
-				trigger: el,
-				start: "top 90%",
-				toggleActions: "play none none none",
-			},
-			opacity: 0,
-			y: 30,
-			duration: 0.8,
-			ease: "power3.out",
-			delay: i * 0.1,
-		});
-	});
+		const paint = () => {
+			// Ease towards the cursor so the light trails a little instead of sticking to it
+			const ease = reduceMotion ? 1 : 0.2;
+			current.x += (target.x - current.x) * ease;
+			current.y += (target.y - current.y) * ease;
 
-	gsap.utils.toArray(".tech-category").forEach((category) => {
-		const el = category as HTMLElement;
-		const items = el.querySelectorAll(".tech-item");
-
-		items.forEach((item, idx) => {
-			const minDelay = 0.4;
-			const baseDelay = 0.1;
-			const delay = minDelay + baseDelay * idx;
-
-			gsap.from(item, {
-				scrollTrigger: {
-					trigger: el,
-					start: "top 90%",
-					toggleActions: "play none none none",
-				},
-				opacity: 0,
-				y: 20,
-				duration: 0.4,
-				delay,
-				ease: "power2.out",
+			// Read every position first, then write, so the browser only lays out once
+			const rects = items.map((item) => item.getBoundingClientRect());
+			items.forEach((item, i) => {
+				item.style.setProperty("--x", `${current.x - rects[i].left}px`);
+				item.style.setProperty("--y", `${current.y - rects[i].top}px`);
 			});
+
+			const moving = Math.abs(target.x - current.x) > 0.5 || Math.abs(target.y - current.y) > 0.5;
+			frame = moving ? requestAnimationFrame(paint) : 0;
+		};
+
+		const request = () => {
+			if (!frame) frame = requestAnimationFrame(paint);
+		};
+
+		root.addEventListener("pointerenter", (event) => {
+			target.x = current.x = event.clientX;
+			target.y = current.y = event.clientY;
+			root.setAttribute("data-active", "");
+			request();
 		});
-	});
+		root.addEventListener("pointermove", (event) => {
+			target.x = event.clientX;
+			target.y = event.clientY;
+			request();
+		});
+		root.addEventListener("pointerleave", () => root.removeAttribute("data-active"));
+		window.addEventListener("scroll", () => root.hasAttribute("data-active") && request(), {
+			passive: true,
+		});
+	}
 </script>

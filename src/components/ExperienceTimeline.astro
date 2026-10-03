@@ -1,87 +1,92 @@
 ---
-const experiences = [
+const main = [
 	{
-		title: "Full Stack Developer",
-		company: "Brightanalytics",
-		period: "Sep 2025 - present",
+		title: "Full-stack developer",
+		company: "BrightAnalytics",
+		period: "Sep 2025 - now",
+		current: true,
 		description:
-			"Full-stack developer on BrightAnalytics, a financial reporting and consolidation platform built with Laravel. Developing features end to end, working on third-party integrations and framework upgrades, and helping improve the team's testing practices and code quality.",
+			"I work on a financial reporting and consolidation platform built with Laravel. I build features from start to finish, work on integrations with other software, help with framework upgrades, and help the team write better tests.",
 	},
 	{
-		title: "Software Engineer Intern",
+		title: "Software engineer intern",
 		company: "Citymesh",
-		period: "Feb 2025 - May 2025",
+		period: "Feb - May 2025",
+		current: false,
 		description:
-			"Built a 5G use-case report generator with data visualizations, translated business needs into technical solutions, led agile sprints, and built a multi-service tool using Node.js, Kafka, and Vue.js.",
+			"I built a tool that turns 5G use cases into reports with charts. I talked with the business side to find out what they needed, led our sprints, and built a small multi-service tool with Node.js, Kafka and Vue.",
 	},
+];
+
+const earlier = [
 	{
-		title: "Technical Support",
+		title: "Technical support",
 		company: "Citymesh",
-		period: "July 2024",
-		description:
-			"Provided on-site and remote technical assistance, and configured WiFi hardware for customers.",
+		period: "Jul 2024",
+		description: "Helped customers on site and remotely, and set up WiFi hardware.",
 	},
 	{
-		title: "Customer Service",
+		title: "Customer service",
 		company: "La Belgique Gourmande",
-		period: "August 2023",
-		description:
-			"Sold local specialty goods, ensured quality customer service, and worked in a performance-based environment.",
+		period: "Aug 2023",
+		description: "Sold local specialty products and helped customers.",
 	},
 	{
-		title: "Website Developer (WordPress)",
+		title: "Website developer",
 		company: "Knoware",
-		period: "July 2022",
-		description: "Created a modern, user-friendly website and used Jira in a business context.",
+		period: "Jul 2022",
+		description: "Built a new WordPress website and used Jira to plan the work.",
 	},
 	{
-		title: "Software Engineer Intern",
-		company: "City Oostkamp",
-		period: "April 2022",
-		description:
-			"Created a web application with ASP.NET to streamline and automate data collection for educational institutions.",
+		title: "Software engineer intern",
+		company: "City of Oostkamp",
+		period: "Apr 2022",
+		description: "Built a web app with ASP.NET that collects data from schools automatically.",
 	},
 ];
 ---
 
-<div class="relative ml-4 space-y-12 border-l-2 border-gray-700">
+<ol class="space-y-10">
 	{
-		experiences.map((exp) => (
-			<div class="group timeline-item relative pl-8">
-				<div class="bg-primary absolute top-0 -left-[.84rem] h-6 w-6 rounded-full border-2 border-blue-500 transition duration-400 ease-out group-hover:bg-blue-500" />
-				<div class="flex flex-col gap-1">
-					<h3 class="text-xl font-semibold">{exp.title}</h3>
-					<h4 class="text-blue-400">{exp.company}</h4>
-					<span class="text-sm text-gray-400">{exp.period}</span>
-					<p class="mt-2 text-gray-500">{exp.description}</p>
+		main.map((job) => (
+			<li data-reveal class="grid gap-1.5 sm:grid-cols-[8.5rem_1fr] sm:gap-6">
+				<p class="text-faint font-mono text-xs sm:pt-1.5">{job.period}</p>
+				<div>
+					<h3 class="font-display text-fg text-lg font-semibold tracking-[-0.01em]">
+						{job.title}
+						<span class="text-muted font-normal">
+							at <span class="text-accent">{job.company}</span>
+						</span>
+						{job.current && (
+							<span class="border-line text-muted ml-1.5 inline-flex translate-y-[-2px] items-center gap-1.5 rounded-full border px-2 py-0.5 align-middle font-mono text-[11px] font-normal">
+								<span class="bg-accent size-1.5 rounded-full" aria-hidden="true" />
+								Now
+							</span>
+						)}
+					</h3>
+					<p class="text-muted mt-2 max-w-[60ch] leading-relaxed">{job.description}</p>
 				</div>
-			</div>
+			</li>
 		))
 	}
-</div>
-<script>
-	import { gsap } from "gsap";
-	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	gsap.registerPlugin(ScrollTrigger);
+</ol>
 
-	const $items = document.querySelectorAll(".timeline-item");
-
-	$items.forEach((item) => {
-		gsap.fromTo(
-			item,
-			{ opacity: 0, y: 50, scale: 0.9 },
-			{
-				opacity: 1,
-				y: 0,
-				scale: 1,
-				duration: 0.8,
-				ease: "power2.out",
-				scrollTrigger: {
-					trigger: item,
-					start: "top 100%",
-					toggleActions: "play none none none",
-				},
-			},
-		);
-	});
-</script>
+<h3 data-reveal class="text-muted mt-14 mb-5 text-sm">Earlier</h3>
+<ol class="divide-line border-line divide-y border-y">
+	{
+		earlier.map((job) => (
+			<li data-reveal class="grid gap-1 py-4 sm:grid-cols-[8.5rem_1fr] sm:gap-6">
+				<p class="text-faint font-mono text-xs sm:pt-1">{job.period}</p>
+				<div>
+					<p class="text-fg text-[15px]">
+						{job.title}{" "}
+						<span class="text-muted">
+							at <span class="text-accent">{job.company}</span>
+						</span>
+					</p>
+					<p class="text-faint mt-1 text-sm">{job.description}</p>
+				</div>
+			</li>
+		))
+	}
+</ol>

@@ -4,56 +4,93 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
-import BackToBlogs from "../components/BackToBlogs.astro";
 import "../styles/markdown-content.css";
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = CollectionEntry<"blog">["data"] & { readingTime?: number };
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, readingTime } = Astro.props;
 ---
 
+<!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} image={heroImage} />
 	</head>
-	<body class="bg-black text-gray-100">
+	<body>
 		<Header />
-		<BackToBlogs />
 
-		<main class="py-12 md:py-20">
-			<article class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-				<div class="mb-8 text-center md:mb-12">
-					<h1 class="special-font mb-3 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
-						{title}
-					</h1>
-					<div class="text-sm text-gray-500 dark:text-gray-400">
-						Published on <FormattedDate date={pubDate} />
-						{
-							updatedDate && (
-								<span class="mt-1 block italic">
-									Last updated on <FormattedDate date={updatedDate} />
-								</span>
-							)
-						}
-					</div>
+		<!-- Floating copy of the back link, shown once the inline one scrolls away -->
+		<div class="pointer-events-none fixed inset-x-0 top-[4.75rem] z-40">
+			<div class="container-page">
+				<div class="mx-auto max-w-[44rem]">
+					<a href="/blog/" data-back-float class="float-back" tabindex="-1" aria-hidden="true">
+						<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+							<path
+								d="M10 4L6 8l4 4"
+								stroke="currentColor"
+								stroke-width="1.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"></path>
+						</svg>
+						All posts
+					</a>
 				</div>
+			</div>
+		</div>
+
+		<main id="main" class="container-page">
+			<article class="mx-auto max-w-[44rem] pt-10 pb-24 md:pt-16">
+				<a
+					href="/blog/"
+					data-back-inline
+					class="back-link text-muted inline-flex items-center gap-1.5 text-sm"
+				>
+					<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+						<path
+							d="M10 4L6 8l4 4"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"></path>
+					</svg>
+					All posts
+				</a>
+
+				<h1
+					class="font-display mt-8 text-[clamp(2rem,5vw,3rem)] leading-[1.1] font-semibold tracking-[-0.02em] text-balance"
+				>
+					{title}
+				</h1>
+				<p class="text-faint mt-5 flex flex-wrap gap-x-2 font-mono text-xs">
+					<FormattedDate date={pubDate} />
+					{readingTime && <span aria-hidden="true">·</span>}
+					{readingTime && <span>{readingTime} min read</span>}
+					{
+						updatedDate && (
+							<>
+								<span aria-hidden="true">·</span>
+								<span>
+									Updated <FormattedDate date={updatedDate} />
+								</span>
+							</>
+						)
+					}
+				</p>
 
 				{
 					heroImage && (
-						<div class="mb-8 aspect-video overflow-hidden rounded-lg shadow-lg md:mb-12">
-							<img
-								width={1020}
-								height={510}
-								src={heroImage}
-								alt={`Hero for ${title}`}
-								class="h-full w-full object-cover"
-								loading="eager"
-							/>
-						</div>
+						<img
+							width={1020}
+							height={510}
+							src={heroImage}
+							alt=""
+							class="border-line mt-10 aspect-video w-full rounded-xl border object-cover"
+							loading="eager"
+						/>
 					)
 				}
 
-				<div class="markdown-content">
+				<div class="markdown-content mt-12">
 					<slot />
 				</div>
 			</article>
@@ -62,3 +99,81 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.float-back {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.375rem;
+		height: 2.25rem;
+		padding-inline: 0.75rem 0.875rem;
+		border-radius: 999px;
+		border: 1px solid var(--color-line-strong);
+		background: rgb(17 17 20 / 0.92);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		box-shadow: 0 8px 24px rgb(0 0 0 / 0.4);
+		font-size: 0.875rem;
+		color: var(--color-muted);
+		opacity: 0;
+		transform: translateY(-6px) scale(0.97);
+		visibility: hidden;
+		transition:
+			opacity 150ms ease,
+			transform 150ms var(--ease-out),
+			color 150ms ease,
+			visibility 0s linear 150ms;
+	}
+	.float-back[data-visible] {
+		pointer-events: auto;
+		opacity: 1;
+		transform: none;
+		visibility: visible;
+		transition:
+			opacity 200ms ease,
+			transform 240ms var(--ease-out),
+			color 150ms ease,
+			visibility 0s;
+	}
+	.float-back:active {
+		transform: scale(0.97);
+	}
+	@media (hover: hover) and (pointer: fine) {
+		.float-back:hover {
+			color: var(--color-fg);
+		}
+	}
+
+	.back-link {
+		transition: color 150ms ease;
+	}
+	.back-link svg {
+		transition: transform 200ms var(--ease-out);
+	}
+	@media (hover: hover) and (pointer: fine) {
+		.back-link:hover {
+			color: var(--color-fg);
+		}
+		.back-link:hover svg {
+			transform: translateX(-2px);
+		}
+	}
+</style>
+
+<script>
+	const inline = document.querySelector("[data-back-inline]");
+	const float = document.querySelector<HTMLElement>("[data-back-float]");
+
+	if (inline && float) {
+		new IntersectionObserver(
+			([entry]) => {
+				// Only show it after the inline link has scrolled up out of view, not before
+				const show = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+				float.toggleAttribute("data-visible", show);
+				float.tabIndex = show ? 0 : -1;
+				float.setAttribute("aria-hidden", String(!show));
+			},
+			{ rootMargin: "-64px 0px 0px 0px" },
+		).observe(inline);
+	}
+</script>

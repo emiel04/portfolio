@@ -3,10 +3,6 @@
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.css";
 import { SITE_TITLE } from "../consts";
-import { gsap } from "gsap";
-
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 interface Props {
 	title: string;
 	description: string;
@@ -16,7 +12,6 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description, image = "/portfolio-og.jpg" } = Astro.props;
-gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 ---
 
 <!-- Global Metadata -->
@@ -33,19 +28,17 @@ gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Font preloads -->
-<!--<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />-->
-<!--<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />-->
+<meta name="theme-color" content="#09090b" />
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-	href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap"
+	href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..600&family=Inter+Tight:wght@500..700&family=Geist+Mono:wght@400..500&display=swap"
 	rel="stylesheet"
 />
-<link
-	href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-	rel="stylesheet"
-/><!-- Canonical URL -->
+
+<!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Primary Meta Tags -->
@@ -69,3 +62,56 @@ gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
 <!-- Libs -->
 <script defer src="/uma-analyt.js" data-website-id="73e156b3-d50d-45bf-a52a-315bc6c90790"></script>
+
+<script>
+	const items = [...document.querySelectorAll<HTMLElement>("[data-reveal]")];
+	const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+	if (items.length > 0 && !reduceMotion) {
+		// Anything already on screen stays as it is. Only things further down get hidden first.
+		const below = items.filter((item) => item.getBoundingClientRect().top > window.innerHeight);
+		items
+			.filter((item) => !below.includes(item))
+			.forEach((item) => item.setAttribute("data-revealed", ""));
+		document.documentElement.classList.add("reveal-ready");
+
+		const pending = new Set(below);
+		const reveal = (item: HTMLElement, delay: number) => {
+			item.style.setProperty("--reveal-delay", `${delay}ms`);
+			item.setAttribute("data-revealed", "");
+			observer.unobserve(item);
+			pending.delete(item);
+			if (pending.size === 0) window.removeEventListener("scroll", onScroll);
+		};
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				// Things that come into view together get a short stagger, top to bottom
+				entries
+					.filter((entry) => entry.isIntersecting)
+					.sort(
+						(a, b) =>
+							a.boundingClientRect.top - b.boundingClientRect.top ||
+							a.boundingClientRect.left - b.boundingClientRect.left,
+					)
+					.forEach((entry, i) => reveal(entry.target as HTMLElement, Math.min(i, 6) * 60));
+			},
+			{ rootMargin: "0px 0px -8% 0px" },
+		);
+		below.forEach((item) => observer.observe(item));
+
+		// A fast fling or a jump link can skip past an item without it ever being on screen.
+		// Show those right away, so nothing above you stays invisible.
+		let frame = 0;
+		const sweep = () => {
+			frame = 0;
+			for (const item of pending) {
+				if (item.getBoundingClientRect().bottom < 0) reveal(item, 0);
+			}
+		};
+		const onScroll = () => {
+			if (!frame) frame = requestAnimationFrame(sweep);
+		};
+		window.addEventListener("scroll", onScroll, { passive: true });
+	}
+</script>

@@ -2,38 +2,59 @@
 import { getCollection } from "astro:content";
 import FormattedDate from "./FormattedDate.astro";
 
+interface Props {
+	limit?: number;
+}
+
+const { limit } = Astro.props;
 const posts = (await getCollection("blog")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+const shown = limit ? posts.slice(0, limit) : posts;
 ---
 
-<div class="space-y-8">
+<ul class="post-list -mx-3 -mt-3.5">
 	{
-		posts.length === 0 ? (
-			<p class="text-center text-gray-400">Looks like I haven't written any blog posts yet!</p>
-		) : (
-			posts.map((post) => (
+		shown.map((post) => (
+			<li data-reveal>
 				<a
 					href={`/blog/${post.id}/`}
-					class="group block rounded-lg border border-gray-700/50 bg-gray-800/20 p-6 shadow-sm transition hover:border-blue-500/30 hover:bg-gray-800/40 focus:ring focus:ring-blue-600/50 focus:outline-none"
+					class="post-row group flex items-baseline justify-between gap-6 rounded-lg px-3 py-3.5"
 				>
-					<article class="fade-up-0">
-						<h3 class="mb-2 text-2xl font-semibold text-white group-hover:text-blue-400">
-							{post.data.title}
-						</h3>
-						<div class="mb-3 text-sm text-gray-400">
-							<FormattedDate date={post.data.pubDate} />
-						</div>
-						{post.data.description && (
-							<p class="line-clamp-3 text-gray-300">
-								{/* Limits description to 3 lines */}
-								{post.data.description}
-							</p>
-						)}
-						<span class="mt-4 inline-block text-blue-400 group-hover:underline">Read post →</span>
-					</article>
+					<span class="text-fg">{post.data.title}</span>
+					<span class="text-faint shrink-0 font-mono text-xs">
+						<FormattedDate date={post.data.pubDate} />
+					</span>
 				</a>
-			))
-		)
+			</li>
+		))
 	}
-</div>
+</ul>
+
+{
+	limit && posts.length > limit && (
+		<a href="/blog/" class="link mt-6 inline-block text-sm">
+			All {posts.length} posts
+		</a>
+	)
+}
+
+<style>
+	.post-row {
+		transition: background-color 150ms ease;
+	}
+	@media (hover: hover) and (pointer: fine) {
+		.post-row:hover {
+			background: var(--color-surface);
+		}
+	}
+	.post-row:active {
+		background: var(--color-surface);
+	}
+	@media (max-width: 480px) {
+		.post-row {
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+	}
+</style>
