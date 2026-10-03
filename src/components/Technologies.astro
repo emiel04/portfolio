@@ -4,13 +4,13 @@ import { Icon } from "astro-icon/components";
 const daily = [
 	{ name: "Laravel", icon: "laravel" },
 	{ name: "PHP", icon: "php" },
-	{ name: "Go", icon: "go" },
 ];
 
 const groups = [
 	{
 		name: "I've also worked with",
 		items: [
+			{ name: "Go", icon: "go" },
 			{ name: "TypeScript", icon: "ts" },
 			{ name: "JavaScript", icon: "javascript" },
 			{ name: "Vue", icon: "vue" },
@@ -45,7 +45,7 @@ const groups = [
 <div class="space-y-10" data-spotlight>
 	<div data-reveal>
 		<h3 class="text-muted mb-4 text-sm">What I use every day</h3>
-		<ul class="grid grid-cols-3 gap-2 sm:gap-3">
+		<ul class="grid grid-cols-2 gap-2 sm:gap-3">
 			{
 				daily.map((tech) => (
 					<li class="glow border-line bg-surface flex flex-col items-start gap-2.5 rounded-xl border p-3.5 sm:flex-row sm:items-center sm:gap-3 sm:px-4">
